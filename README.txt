@@ -1,3 +1,6 @@
+Rationals:
+Arbitrary Precision Rational class
+
 Compile:
 g++ -o main Integer.cpp Rational.cpp main.cpp
 
