@@ -49,5 +49,4 @@ Rational:
         operator. The idea being that its faster overall just to do this once and not 
         after every operation.
 
-Group Members:
-William Hadden, John Marshall
+
