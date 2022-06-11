@@ -100,7 +100,10 @@ int main()
     std::cout << "20 / 3: " << num/denom << std::endl;
     std::cout << "23459023850983290589042 / 2: " << Integer("23459023850983290589042")/Integer("2") << std::endl;
 
+    //now this doesn't work
     std::cout << "13 / -5/7: " << Rational("13") / Rational("-5/7") << std::endl;
+
+    std::cout << "-3.2/4: " << Rational("-3.2/4") << std::endl;
 
     
     return 0;

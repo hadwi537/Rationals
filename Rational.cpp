@@ -36,7 +36,8 @@ namespace cosc326 {
 			std::string wholeStr = nums[0].substr(0, endWhole);
 			std::string num = nums[0].substr(endWhole+1, nums[0].size());
 			denominator = Integer(nums[1]); 
-			numerator = num + denominator * Integer(wholeStr);	
+			numerator = num + denominator * Integer(wholeStr).getNumber();
+			numerator.setSign(Integer(wholeStr).getSign());
 		} else if (nums[0] != "" && nums[1] != ""){
 			numerator = Integer(nums[0]);
 			denominator = Integer(nums[1]);
@@ -44,7 +45,8 @@ namespace cosc326 {
 			numerator = Integer(nums[0]);
 			denominator = Integer("1");
 		}
-
+		// std::cout << "numerator: " << numerator << std::endl;
+		// std::cout << "denomintaor: " << denominator << std::endl;
 	}
 
 	Rational::Rational(const Rational& r) {
@@ -222,10 +224,24 @@ namespace cosc326 {
 
 	void Rational::simplify() const {
 		//simplify rational
+		// std::cout << "numerator: " << numerator << std::endl;
+		// std::cout << "Denominator " << denominator << std::endl;
 		Integer denom = gcd(numerator, denominator);
-		numerator /= denom; //this is where dies 
-		denominator /= denom;
+		// std::cout << "denom: " << denom << std::endl;
+		denom.setSign(false); //always set denom to positive
+		numerator /= denom;  
+		denominator /= denom; 
 		
+		if (denominator.getSign()){ //i.e denominator negative
+			if (numerator.getSign()){ //also negative
+				numerator.setSign(false);
+				denominator.setSign(false);
+			} else {
+				numerator.setSign(true);
+				denominator.setSign(false);
+			}
+		}
+		// std::cout << numerator << std::endl;
 	}
 
 	std::istream& operator>>(std::istream& is, Rational& i) {
